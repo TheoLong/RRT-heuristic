@@ -5,33 +5,35 @@ from rrt import processFiles as pf
 def main():
     # read file, perpare for rrt
     # inputFile = 'input_triangle.txt'
-    case = 2
+    case = 4
 
     if case == 1:
         pass
-        # inputFile = 'input_rrt.txt'
-        # s,g,obs = readFile(inputFile)
-        # polyObs = genPolys(obs)
-        # polyObs = [polyObs[1]]
-        # obs = [obs[1]]
+        inputFile = 'input_rrt.txt'
+        file = pf(inputFile)
+        s,g,obs,polyObs = file.pc() 
+        polyObs = [polyObs[1]]
+        obs = [obs[1]]
+
     elif case == 2:
         inputFile = 'input_corner.txt'
         file = pf(inputFile)
         s,g,obs,polyObs = file.pc()
         
-    # elif case == 3:
-    #     inputFile = 'input_triangle.txt'
-    #     s,g,obs = readFile(inputFile)
-    #     polyObs = genPolys(obs)
-    # elif case == 4:
-    #     inputFile = 'input_rrt.txt'
-    #     s,g,obs = readFile(inputFile)
-    #     polyObs = genPolys(obs)    
+    elif case == 3:
+        inputFile = 'input_triangle.txt'
+        file = pf(inputFile)
+        s,g,obs,polyObs = file.pc()
+
+    elif case == 4:
+        inputFile = 'input_rrt.txt'
+        file = pf(inputFile)
+        s,g,obs,polyObs = file.pc()  
 
 
     # run rrt
     exploreArea = [-15, 15]
-    rrt = RRT(s, g, obs, polyObs, exploreArea, improved = True)
+    rrt = RRT(s, g, obs, polyObs, exploreArea, improved = True, stepRadius=1)
     rrt.plan()  # grow rtt
     rrt.pathStat() # print path finding statistic
     raw_input('====> press enter to terminate the program')

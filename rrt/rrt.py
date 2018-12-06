@@ -153,6 +153,8 @@ class RRT():
 
     # check for spacing between new nodes and old nodes
     def spaced(self,node):
+        if not self.improved:
+            return True
         for n in self.nodeList:
             if self.dist(n,node) < self.stepRadius-0.01:
                 return False
@@ -184,12 +186,7 @@ class RRT():
         print 'Time used:', str(self.timelaps),'s'
 
     def nextRandomPoint(self):
-        if random.randint(0, 100) > 50 or not self.improved or self.hit_count >= 5:
-            randomPoint = [random.uniform(self.minrand, self.maxrand),random.uniform(self.minrand, self.maxrand)]
-            self.hit_count = 0
-        else: 
-            randomPoint = [self.goal.x, self.goal.y]
-        return randomPoint
+        return [random.uniform(self.minrand, self.maxrand),random.uniform(self.minrand, self.maxrand)]
 
     def bestStep(self,nodes):
         distance = []
