@@ -153,11 +153,14 @@ class RRT():
 
     # check for spacing between new nodes and old nodes
     def spaced(self,node):
-        if not self.improved:
-            return True
         for n in self.nodeList:
             if self.dist(n,node) < self.stepRadius-0.01:
                 return False
+        # if not self.improved:
+        #     return True
+        # for n in self.nodeList:
+        #     if self.dist(n,node) < self.stepRadius-0.01:
+        #         return False
         return True
 
     # check if latest node reached the goal
