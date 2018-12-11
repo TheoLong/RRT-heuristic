@@ -5,7 +5,7 @@ from rrt import processFiles as pf
 def main():
     # append and switch case to the map you want to run rrt
 
-    case = 4
+    case = 10
 
     # box
     if case == 1:
@@ -56,7 +56,7 @@ def main():
     s,g,obs,polyObs = file.pc() 
 
     # run rrt
-    exploreArea = [-15, 15]
+    exploreArea = [0, 15]
     rrt = RRT(s, g, obs, polyObs, exploreArea, improved = False, stepRadius=0.9)
     rrt.plan()  # grow rtt
     rrt.pathStat() # print path finding statistic
